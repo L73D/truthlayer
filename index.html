@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TruthLayer - AI Deepfake Detection</title>
+  <meta name="description" content="Detect AI-generated images and deepfakes with 19-layer analysis, neural networks, and blockchain-verified proof. Truth for the world.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%);
+      color: #ffffff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(10, 10, 26, 0.9);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #a0a0b0;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+    }
+
+    .btn-install {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-install:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 40px rgba(99, 102, 241, 0.4);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 160px 60px 100px;
+      text-align: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(99, 102, 241, 0.2);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 13px;
+      color: #a5b4fc;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      font-size: 64px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, #ffffff 0%, #a0a0b0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #a0a0b0;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 40px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: background 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Stats */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      padding: 60px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 48px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: #a0a0b0;
+      margin-top: 8px;
+    }
+
+    /* Features */
+    .features {
+      padding: 80px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .features h2 {
+      text-align: center;
+      font-size: 40px;
+      margin-bottom: 60px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 32px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(99, 102, 241, 0.5);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .feature-card p {
+      color: #a0a0b0;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    /* How it works */
+    .how-it-works {
+      padding: 80px 60px;
+      background: rgba(99, 102, 241, 0.05);
+    }
+
+    .how-it-works h2 {
+      text-align: center;
+      font-size: 40px;
+      margin-bottom: 60px;
+    }
+
+    .steps {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .step {
+      text-align: center;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .step-number {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 auto 20px;
+    }
+
+    .step h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      color: #a0a0b0;
+      font-size: 14px;
+    }
+
+    /* Pricing */
+    .pricing {
+      padding: 80px 60px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .pricing h2 {
+      text-align: center;
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    .pricing-subtitle {
+      text-align: center;
+      color: #a0a0b0;
+      margin-bottom: 60px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .pricing-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+    }
+
+    .pricing-card.featured {
+      border-color: #6366f1;
+      background: rgba(99, 102, 241, 0.1);
+      transform: scale(1.05);
+    }
+
+    .pricing-card h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .pricing-card .price {
+      font-size: 48px;
+      font-weight: 800;
+      margin: 16px 0;
+    }
+
+    .pricing-card .price span {
+      font-size: 16px;
+      color: #a0a0b0;
+      font-weight: 400;
+    }
+
+    .pricing-card ul {
+      list-style: none;
+      margin: 24px 0;
+      text-align: left;
+    }
+
+    .pricing-card li {
+      padding: 8px 0;
+      color: #a0a0b0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pricing-card li::before {
+      content: "✓";
+      color: #6366f1;
+      font-weight: bold;
+    }
+
+    .pricing-card .btn-primary,
+    .pricing-card .btn-secondary {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* Footer */
+    footer {
+      padding: 60px;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-logo {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 20px;
+    }
+
+    .footer-links a {
+      color: #a0a0b0;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    .copyright {
+      color: #666;
+      font-size: 13px;
+    }
+
+    .blockchain-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(139, 92, 246, 0.2);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      color: #c4b5fd;
+      margin-top: 20px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        padding: 15px 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 120px 20px 60px;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .stats {
+        gap: 30px;
+        padding: 40px 20px;
+      }
+
+      .features,
+      .how-it-works,
+      .pricing {
+        padding: 60px 20px;
+      }
+
+      .pricing-card.featured {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">
+      <div class="logo-icon">⚡</div>
+      TruthLayer
+    </div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="https://buy.stripe.com/test_aFa6oH3Hwdi4ezR2tw3Nm01" class="btn-install">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="badge">🛡️ Blockchain-Verified Detection</div>
+    <h1>Is This Image Real?<br>Know in Seconds.</h1>
+    <p>Detect AI-generated images and deepfakes with 19-layer analysis, neural networks, and immutable blockchain proof. Truth for the world.</p>
+    <div class="hero-buttons">
+      <a href="https://buy.stripe.com/test_aFa6oH3Hwdi4ezR2tw3Nm01" class="btn-primary">
+        ⚡ Get TruthLayer
+      </a>
+      <a href="#how-it-works" class="btn-secondary">
+        See How It Works
+      </a>
+    </div>
+    <div class="blockchain-badge">
+      ⛓️ Verdicts anchored on Hedera Blockchain
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats">
+    <div class="stat">
+      <div class="stat-number">19</div>
+      <div class="stat-label">Detection Layers</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">95%+</div>
+      <div class="stat-label">Accuracy</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">&lt;3s</div>
+      <div class="stat-label">Analysis Time</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">∞</div>
+      <div class="stat-label">Blockchain Proof</div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features" id="features">
+    <h2>Powerful Detection Technology</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🔬</div>
+        <h3>19-Layer Analysis</h3>
+        <p>From EXIF metadata to neural network patterns, we examine every pixel for signs of AI generation or manipulation.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧠</div>
+        <h3>Neural Network</h3>
+        <p>ONNX-powered deep learning model trained to detect the subtle fingerprints left by AI image generators.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⛓️</div>
+        <h3>Blockchain Proof</h3>
+        <p>Every verdict is hashed and anchored to Hedera blockchain. Immutable, timestamped, forever verifiable.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌐</div>
+        <h3>Truth Network</h3>
+        <p>Crowdsourced consensus from thousands of scans. See what the community has determined about any image.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚖️</div>
+        <h3>Challenge System</h3>
+        <p>Disagree with a verdict? Challenge it. Community review ensures accuracy and accountability.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Privacy First</h3>
+        <p>Your images are analyzed locally. We never store your content - only cryptographic hashes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="how-it-works" id="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Upload or Paste</h3>
+        <p>Drop an image or paste a URL into TruthLayer</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>19-Layer Scan</h3>
+        <p>Our engine analyzes metadata, pixels, patterns, and more</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Get Verdict</h3>
+        <p>AUTHENTIC, ENHANCED, or SYNTHETIC - with confidence score</p>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <h3>Blockchain Proof</h3>
+        <p>Verdict is anchored to Hedera for permanent verification</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="pricing" id="pricing">
+    <h2>Simple, Honest Pricing</h2>
+    <p class="pricing-subtitle">Same detection quality at every tier. Truth shouldn't be gated.</p>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>Starter</h3>
+        <div class="price">$0.99</div>
+        <p style="color: #a0a0b0;">3 scans</p>
+        <ul>
+          <li>Full 19-layer analysis</li>
+          <li>Neural network detection</li>
+          <li>Local blockchain proof</li>
+          <li>Truth Network lookup</li>
+        </ul>
+        <a href="https://buy.stripe.com/test_aFa6oH3Hwdi4ezR2tw3Nm01" class="btn-secondary">Get Started</a>
+      </div>
+      <div class="pricing-card featured">
+        <h3>Standard</h3>
+        <div class="price">$4.99</div>
+        <p style="color: #a0a0b0;">10 scans</p>
+        <ul>
+          <li>Everything in Starter</li>
+          <li>On-chain Hedera proof</li>
+          <li>Priority processing</li>
+          <li>Challenge verdicts</li>
+        </ul>
+        <a href="https://buy.stripe.com/test_cNibJ1fqece02R93xA3Nm02" class="btn-primary">Best Value</a>
+      </div>
+      <div class="pricing-card">
+        <h3>Unlimited</h3>
+        <div class="price">$9.99<span>/mo</span></div>
+        <p style="color: #a0a0b0;">Unlimited scans</p>
+        <ul>
+          <li>Everything in Standard</li>
+          <li>Unlimited scans</li>
+          <li>Always-on mode</li>
+          <li>API access (coming soon)</li>
+        </ul>
+        <a href="https://buy.stripe.com/test_8x26oHdi6gug0J1fgi3Nm03" class="btn-secondary">Go Unlimited</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-logo">⚡ TruthLayer</div>
+    <div class="footer-links">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="mailto:support@truthlayer.app">Contact</a>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </div>
+    <p class="copyright">© 2026 TruthLayer. Part of the Anchor Ecosystem. Truth for the world.</p>
+  </footer>
+</body>
+</html>
