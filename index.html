@@ -214,69 +214,82 @@
     .use-case h4 { font-size: 18px; margin-bottom: 8px; }
     .use-case p { color: #a0a0b0; font-size: 14px; }
 
-    .pricing { padding: 80px 60px; max-width: 1200px; margin: 0 auto; }
+    .pricing { padding: 80px 60px; max-width: 1400px; margin: 0 auto; }
     .pricing h2 { text-align: center; font-size: 40px; margin-bottom: 20px; }
     .pricing-subtitle { text-align: center; color: #a0a0b0; margin-bottom: 60px; }
-    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+    .pricing-grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
     .pricing-card {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 16px;
-      padding: 32px;
+      padding: 28px 20px;
       text-align: center;
     }
     .pricing-card.featured {
       border-color: #8b5cf6;
       background: rgba(139, 92, 246, 0.15);
-      transform: scale(1.05);
+      transform: scale(1.03);
       position: relative;
     }
     .pricing-card.featured::before {
-      content: "MOST POPULAR";
+      content: "BEST VALUE";
       position: absolute;
       top: -12px;
       left: 50%;
       transform: translateX(-50%);
       background: linear-gradient(135deg, #6366f1, #8b5cf6);
-      padding: 4px 16px;
+      padding: 4px 14px;
       border-radius: 20px;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
     }
     .pricing-card.enterprise { 
-      border-color: #8b5cf6; 
-      background: rgba(139, 92, 246, 0.1); 
+      border-color: #FFB347; 
+      background: rgba(255, 179, 71, 0.1); 
     }
-    .pricing-card h3 { font-size: 20px; margin-bottom: 8px; }
-    .pricing-card .price { font-size: 48px; font-weight: 800; }
-    .pricing-card .price span { font-size: 16px; color: #a0a0b0; font-weight: 400; }
-    .pricing-card .scans { color: #a0a0b0; margin: 8px 0 24px; }
+    .pricing-card h3 { font-size: 18px; margin-bottom: 8px; }
+    .pricing-card .price { font-size: 36px; font-weight: 800; }
+    .pricing-card .price span { font-size: 14px; color: #a0a0b0; font-weight: 400; }
+    .pricing-card .scans { color: #a0a0b0; margin: 8px 0 16px; font-size: 13px; }
     .pricing-card .power-badge {
       display: inline-block;
       background: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
       color: #ffffff;
-      padding: 5px 14px;
+      padding: 4px 10px;
       border-radius: 20px;
-      font-size: 11px;
+      font-size: 9px;
       font-weight: 700;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
-    .pricing-card ul { list-style: none; margin: 24px 0; text-align: left; }
-    .pricing-card li { padding: 8px 0; color: #b0b0c0; display: flex; align-items: center; gap: 10px; }
-    .pricing-card li::before { content: "✓"; color: #8b5cf6; font-weight: bold; }
+    .pricing-card ul { list-style: none; margin: 16px 0; text-align: left; }
+    .pricing-card li { padding: 6px 0; color: #b0b0c0; display: flex; align-items: center; gap: 8px; font-size: 13px; }
+    .pricing-card li::before { content: "✓"; color: #8b5cf6; font-weight: bold; font-size: 12px; }
+    .pricing-card.enterprise li::before { color: #FFB347; }
     .btn-card {
       background: linear-gradient(135deg, #6366f1, #8b5cf6);
       color: white;
-      padding: 14px 28px;
-      border-radius: 10px;
+      padding: 12px 20px;
+      border-radius: 8px;
       text-decoration: none;
       font-weight: 600;
-      font-size: 15px;
+      font-size: 14px;
       display: inline-block;
       width: 100%;
       transition: transform 0.2s, box-shadow 0.2s;
     }
     .btn-card:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(139, 92, 246, 0.5); }
+    .api-pricing {
+      margin-top: 50px;
+      text-align: center;
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 12px;
+      padding: 30px;
+    }
+    .api-pricing h4 { font-size: 20px; margin-bottom: 12px; color: #a5b4fc; }
+    .api-pricing p { color: #c0c0d0; font-size: 18px; }
+    .api-pricing strong { color: #FFB347; font-size: 22px; }
+    .api-pricing .api-note { font-size: 14px; color: #8b8b9b; margin-top: 8px; }
 
     footer {
       padding: 60px;
@@ -318,6 +331,12 @@
     }
     .copyright { color: #666; font-size: 13px; margin-top: 20px; }
 
+    @media (max-width: 1200px) {
+      .pricing-grid-5 { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .pricing-grid-5 { grid-template-columns: repeat(2, 1fr); }
+    }
     @media (max-width: 768px) {
       nav { padding: 15px 20px; }
       .nav-links { display: none; }
@@ -328,6 +347,7 @@
       .stats { gap: 30px; padding: 40px 20px; }
       .features, .how-it-works, .pricing, .use-cases { padding: 60px 20px; }
       .value-banner { padding: 30px 20px; margin: 20px; }
+      .pricing-grid-5 { grid-template-columns: 1fr; }
       .pricing-card.featured { transform: none; }
     }
   </style>
@@ -357,8 +377,8 @@
   </section>
 
   <div class="value-banner">
-    <h3>Same Price. Double the Scans. 10x the Power.</h3>
-    <p>Why pay more for less? TruthLayer delivers <span class="highlight">2x the scans</span> at the same price as competitors, with <span class="highlight">10x the detection power</span> through our proprietary multi-layer analysis engine.</p>
+    <h3>The Stripe of Deepfake Detection</h3>
+    <p>Transparent pricing. No sales calls. <span class="highlight">Free tier to start</span>, scale to millions. <span class="highlight">Blockchain proof</span> no competitor offers.</p>
   </div>
 
   <section class="stats">
@@ -454,62 +474,79 @@
   </section>
 
   <section class="pricing" id="pricing">
-    <h2>Simple, Honest Pricing</h2>
-    <p class="pricing-subtitle">Same quality at every tier. Truth shouldn't be gated.</p>
-    <div class="pricing-grid">
+    <h2>Simple, Transparent Pricing</h2>
+    <p class="pricing-subtitle">No hidden fees. No sales calls required. Truth for everyone.</p>
+    <div class="pricing-grid-5">
       <div class="pricing-card">
         <h3>Starter</h3>
-        <div class="price">$29<span>/mo</span></div>
-        <p class="scans">10 scans</p>
-        <div class="power-badge">10x DETECTION POWER</div>
+        <div class="price">Free</div>
+        <p class="scans">10 scans / month</p>
         <ul>
-          <li>Multi-layer analysis</li>
-          <li>Neural network detection</li>
-          <li>Blockchain proof</li>
+          <li>Image + video detection</li>
+          <li>Basic neural analysis</li>
           <li>Truth Network lookup</li>
         </ul>
         <a href="#" class="btn-card">Get Started</a>
       </div>
+      <div class="pricing-card">
+        <h3>Standard</h3>
+        <div class="price">$4.99<span>/mo</span></div>
+        <p class="scans">100 scans / month</p>
+        <div class="power-badge">BLOCKCHAIN PROOF</div>
+        <ul>
+          <li>Full multi-layer analysis</li>
+          <li>Blockchain verification</li>
+          <li>Metadata + audio checks</li>
+          <li>Priority processing</li>
+        </ul>
+        <a href="#" class="btn-card">Subscribe</a>
+      </div>
       <div class="pricing-card featured">
         <h3>Pro</h3>
-        <div class="price">$99<span>/mo</span></div>
-        <p class="scans">100 scans</p>
-        <div class="power-badge">10x DETECTION POWER</div>
+        <div class="price">$19.99<span>/mo</span></div>
+        <p class="scans">1,000 scans / month</p>
+        <div class="power-badge">API ACCESS</div>
         <ul>
-          <li>Everything in Starter</li>
-          <li>Priority processing</li>
-          <li>Challenge verdicts</li>
-          <li>API access (coming soon)</li>
+          <li>Everything in Standard</li>
+          <li>Advanced forensic reports</li>
+          <li>Frame-by-frame video</li>
+          <li>API key (low volume)</li>
+          <li>Early model access</li>
         </ul>
-        <a href="#" class="btn-card">Best Value</a>
+        <a href="#" class="btn-card">Go Pro</a>
       </div>
       <div class="pricing-card">
-        <h3>Unlimited</h3>
-        <div class="price">$299<span>/mo</span></div>
-        <p class="scans">Unlimited scans</p>
-        <div class="power-badge">10x DETECTION POWER</div>
+        <h3>Business</h3>
+        <div class="price">$99<span>/mo</span></div>
+        <p class="scans">10,000 scans / month</p>
+        <div class="power-badge">TEAM ACCOUNTS</div>
         <ul>
-          <li>Everything in Pro</li>
-          <li>Unlimited scans</li>
-          <li>Always-on mode</li>
-          <li>Early feature access</li>
+          <li>Full API access</li>
+          <li>Team accounts + roles</li>
+          <li>Audit logs</li>
+          <li>Priority support</li>
+          <li>Custom model tuning</li>
         </ul>
-        <a href="#" class="btn-card">Go Unlimited</a>
+        <a href="#" class="btn-card">Start Trial</a>
       </div>
       <div class="pricing-card enterprise">
         <h3>Enterprise</h3>
-        <div class="price" style="font-size: 36px;">Custom</div>
-        <p class="scans">For teams &amp; organizations</p>
+        <div class="price" style="font-size: 24px;">$499–$4,999<span>/mo</span></div>
+        <p class="scans">100K – 5M+ scans</p>
         <ul>
-          <li>Volume pricing</li>
-          <li>Full API access</li>
-          <li>Dedicated support</li>
-          <li>SLA guarantee</li>
-          <li>Custom integration</li>
+          <li>On-premise / private cloud</li>
+          <li>SOC2 / HIPAA / GDPR</li>
+          <li>Dedicated support + SLA</li>
+          <li>Custom model training</li>
           <li>White-label options</li>
         </ul>
-        <a href="/cdn-cgi/l/email-protection#63060d17061113110a100623171116170b0f021a06114d021313" class="btn-card">Contact Sales</a>
+        <a href="mailto:enterprise@truthlayer.app" class="btn-card">Contact Sales</a>
       </div>
+    </div>
+    <div class="api-pricing">
+      <h4>⚡ API Pay-As-You-Go</h4>
+      <p><strong>$0.002</strong> per image &nbsp;•&nbsp; <strong>$0.02</strong> per 10s video</p>
+      <p class="api-note">Stripe-style pricing. Predictable. Scalable.</p>
     </div>
   </section>
 
