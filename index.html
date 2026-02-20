@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TruthLayer - AI Deepfake Detection</title>
-  <meta name="description" content="Detect AI-generated images and deepfakes with advanced multi-layer analysis and blockchain-verified proof.">
+  <meta name="description" content="Detect AI-generated images and deepfakes with 98.84% accuracy using advanced multi-layer analysis and blockchain-verified proof.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -20,6 +20,7 @@
       --accent: #a855f7;
       --gold: #FFB347;
       --gold-strong: #FF8C00;
+      --cyan: #22d3ee;
       --text-main: #ffffff;
       --text-soft: #b0b0c0;
       --text-muted: #8b8b9b;
@@ -27,6 +28,7 @@
       --shadow-soft: 0 18px 60px rgba(0, 0, 0, 0.65);
       --shadow-glow-purple: 0 0 40px rgba(139, 92, 246, 0.55);
       --shadow-glow-gold: 0 0 40px rgba(255, 179, 71, 0.55);
+      --shadow-glow-cyan: 0 0 40px rgba(34, 211, 238, 0.55);
       --radius-lg: 18px;
       --radius-md: 14px;
       --radius-sm: 10px;
@@ -46,10 +48,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Scroll behavior */
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     /* Nav */
     nav {
@@ -75,9 +74,7 @@
     }
     .logo-anchor {
       color: var(--gold);
-      text-shadow:
-        0 0 18px rgba(255, 179, 71, 0.9),
-        0 0 40px rgba(255, 140, 0, 0.7);
+      text-shadow: 0 0 18px rgba(255, 179, 71, 0.9), 0 0 40px rgba(255, 140, 0, 0.7);
       font-size: 26px;
       transform: translateY(-1px);
     }
@@ -110,12 +107,8 @@
       background: linear-gradient(90deg, var(--primary), var(--accent));
       transition: width var(--transition-med);
     }
-    .nav-links a:hover {
-      color: #e5e7ff;
-    }
-    .nav-links a:hover::after {
-      width: 100%;
-    }
+    .nav-links a:hover { color: #e5e7ff; }
+    .nav-links a:hover::after { width: 100%; }
     .btn-nav {
       background: radial-gradient(circle at top left, #4f46e5, #8b5cf6);
       color: white;
@@ -130,10 +123,7 @@
       gap: 6px;
       transition: transform var(--transition-fast), box-shadow var(--transition-fast);
     }
-    .btn-nav::before {
-      content: "⚡";
-      font-size: 14px;
-    }
+    .btn-nav::before { content: "⚡"; font-size: 14px; }
     .btn-nav:hover {
       transform: translateY(-1px);
       box-shadow: 0 16px 40px rgba(79, 70, 229, 0.8);
@@ -154,9 +144,7 @@
       content: "";
       position: absolute;
       inset: -120px -220px auto auto;
-      background:
-        radial-gradient(circle at top, rgba(99, 102, 241, 0.45), transparent 60%),
-        radial-gradient(circle at bottom, rgba(168, 85, 247, 0.35), transparent 60%);
+      background: radial-gradient(circle at top, rgba(99, 102, 241, 0.45), transparent 60%), radial-gradient(circle at bottom, rgba(168, 85, 247, 0.35), transparent 60%);
       opacity: 0.9;
       filter: blur(40px);
       z-index: 0;
@@ -174,10 +162,7 @@
       pointer-events: none;
       z-index: 0;
     }
-    .hero-content {
-      position: relative;
-      z-index: 1;
-    }
+    .hero-content { position: relative; z-index: 1; }
     .badge {
       display: inline-flex;
       align-items: center;
@@ -191,9 +176,7 @@
       margin-bottom: 22px;
       box-shadow: 0 10px 30px rgba(79, 70, 229, 0.6);
     }
-    .badge span {
-      font-size: 14px;
-    }
+    .badge span { font-size: 14px; }
     h1 {
       font-size: 52px;
       font-weight: 800;
@@ -234,10 +217,7 @@
       color: #111827;
       box-shadow: var(--shadow-glow-gold);
     }
-    .btn-primary::before {
-      content: "⚡";
-      font-size: 16px;
-    }
+    .btn-primary::before { content: "⚡"; font-size: 16px; }
     .btn-primary:hover {
       transform: translateY(-1px);
       box-shadow: 0 20px 50px rgba(248, 181, 0, 0.9);
@@ -253,7 +233,7 @@
       box-shadow: var(--shadow-glow-purple);
     }
 
-    /* Hero visual: layered card stack */
+    /* Hero visual */
     .hero-visual {
       position: relative;
       z-index: 1;
@@ -277,39 +257,21 @@
       transform-origin: center;
       transition: transform var(--transition-med), box-shadow var(--transition-med), border-color var(--transition-med), background var(--transition-med);
     }
-    .card-layer:nth-child(1) {
-      transform: translate(-18px, 18px) rotateZ(-6deg);
-      opacity: 0.55;
-    }
-    .card-layer:nth-child(2) {
-      transform: translate(12px, 8px) rotateZ(4deg);
-      opacity: 0.75;
-    }
+    .card-layer:nth-child(1) { transform: translate(-18px, 18px) rotateZ(-6deg); opacity: 0.55; }
+    .card-layer:nth-child(2) { transform: translate(12px, 8px) rotateZ(4deg); opacity: 0.75; }
     .card-layer:nth-child(3) {
       transform: translate(0, 0) rotateZ(-1deg);
       opacity: 1;
-      background:
-        radial-gradient(circle at top left, rgba(248, 250, 252, 0.08), transparent 55%),
-        linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.96));
+      background: radial-gradient(circle at top left, rgba(248, 250, 252, 0.08), transparent 55%), linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.96));
       border-color: rgba(129, 140, 248, 0.9);
-      box-shadow:
-        0 22px 60px rgba(15, 23, 42, 0.9),
-        0 0 40px rgba(129, 140, 248, 0.6);
+      box-shadow: 0 22px 60px rgba(15, 23, 42, 0.9), 0 0 40px rgba(129, 140, 248, 0.6);
       overflow: hidden;
     }
-    .card-stack:hover .card-layer:nth-child(1) {
-      transform: translate(-24px, 24px) rotateZ(-8deg);
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
-    }
-    .card-stack:hover .card-layer:nth-child(2) {
-      transform: translate(18px, 10px) rotateZ(6deg);
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
-    }
+    .card-stack:hover .card-layer:nth-child(1) { transform: translate(-24px, 24px) rotateZ(-8deg); }
+    .card-stack:hover .card-layer:nth-child(2) { transform: translate(18px, 10px) rotateZ(6deg); }
     .card-stack:hover .card-layer:nth-child(3) {
       transform: translate(0, -4px) rotateZ(-1deg);
-      box-shadow:
-        0 26px 70px rgba(15, 23, 42, 1),
-        0 0 50px rgba(129, 140, 248, 0.9);
+      box-shadow: 0 26px 70px rgba(15, 23, 42, 1), 0 0 50px rgba(129, 140, 248, 0.9);
     }
     .card-inner {
       position: relative;
@@ -319,38 +281,18 @@
       flex-direction: column;
       justify-content: space-between;
     }
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-    .card-title {
-      font-size: 14px;
-      color: #e5e7eb;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
+    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .card-title { font-size: 14px; color: #e5e7eb; letter-spacing: 0.08em; text-transform: uppercase; }
     .card-pill {
       font-size: 11px;
       padding: 4px 10px;
       border-radius: 999px;
-      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.25), rgba(15, 23, 42, 0.9));
-      border: 1px solid rgba(56, 189, 248, 0.7);
-      color: #e0f2fe;
+      background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.25), rgba(15, 23, 42, 0.9));
+      border: 1px solid rgba(34, 197, 94, 0.7);
+      color: #bbf7d0;
     }
-    .card-metric-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 10px 0 4px;
-    }
-    .card-metric-label {
-      font-size: 11px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
+    .card-metric-row { display: flex; justify-content: space-between; align-items: center; margin: 10px 0 4px; }
+    .card-metric-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
     .card-metric-value {
       font-size: 18px;
       font-weight: 700;
@@ -358,29 +300,15 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .card-bar {
-      margin-top: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: rgba(30, 64, 175, 0.7);
-      overflow: hidden;
-      position: relative;
-    }
+    .card-bar { margin-top: 6px; height: 6px; border-radius: 999px; background: rgba(30, 64, 175, 0.7); overflow: hidden; position: relative; }
     .card-bar-fill {
       position: absolute;
       inset: 0;
-      width: 86%;
+      width: 98.84%;
       background: linear-gradient(90deg, #22c55e, #a3e635, #facc15);
       box-shadow: 0 0 18px rgba(190, 242, 100, 0.7);
     }
-    .card-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-top: 18px;
-    }
+    .card-footer { display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--text-muted); margin-top: 18px; }
     .card-status {
       display: inline-flex;
       align-items: center;
@@ -392,13 +320,7 @@
       color: #bbf7d0;
       font-size: 11px;
     }
-    .card-status-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
-    }
+    .card-status-dot { width: 7px; height: 7px; border-radius: 999px; background: #22c55e; box-shadow: 0 0 10px rgba(34, 197, 94, 0.9); }
 
     /* Value banner */
     .value-banner {
@@ -418,14 +340,8 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .value-banner p {
-      color: var(--text-soft);
-      font-size: 16px;
-    }
-    .value-banner .highlight {
-      color: var(--gold);
-      font-weight: 700;
-    }
+    .value-banner p { color: var(--text-soft); font-size: 16px; }
+    .value-banner .highlight { color: var(--gold); font-weight: 700; }
 
     /* Stats */
     .stats {
@@ -437,10 +353,7 @@
       max-width: 1100px;
       margin: 0 auto;
     }
-    .stat {
-      text-align: center;
-      min-width: 140px;
-    }
+    .stat { text-align: center; min-width: 140px; }
     .stat-number {
       font-size: 40px;
       font-weight: 800;
@@ -448,18 +361,10 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .stat-label {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
+    .stat-label { font-size: 13px; color: var(--text-muted); margin-top: 6px; text-transform: uppercase; letter-spacing: 0.12em; }
 
     /* Sections */
-    section {
-      position: relative;
-    }
+    section { position: relative; }
     .section-divider {
       height: 1px;
       max-width: 1100px;
@@ -468,15 +373,8 @@
       opacity: 0.6;
     }
 
-    .features {
-      padding: 60px 60px 70px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .features h2,
-    .how-it-works h2,
-    .use-cases h2,
-    .pricing h2 {
+    .features { padding: 60px 60px 70px; max-width: 1200px; margin: 0 auto; }
+    .features h2, .how-it-works h2, .use-cases h2, .pricing h2 {
       text-align: center;
       font-size: 32px;
       margin-bottom: 14px;
@@ -490,11 +388,7 @@
       text-transform: uppercase;
       letter-spacing: 0.16em;
     }
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 26px;
-    }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 26px; }
     .feature-card {
       background: var(--bg-panel);
       border: 1px solid var(--border-soft);
@@ -521,34 +415,15 @@
       margin-bottom: 16px;
       box-shadow: 0 12px 30px rgba(79, 70, 229, 0.7);
     }
-    .feature-card h3 {
-      font-size: 18px;
-      margin-bottom: 8px;
-    }
-    .feature-card p {
-      color: var(--text-soft);
-      line-height: 1.6;
-      font-size: 14px;
-    }
+    .feature-card h3 { font-size: 18px; margin-bottom: 8px; }
+    .feature-card p { color: var(--text-soft); line-height: 1.6; font-size: 14px; }
 
     .how-it-works {
       padding: 70px 60px;
       background: radial-gradient(circle at top, rgba(79, 70, 229, 0.18), rgba(15, 23, 42, 0.96));
     }
-    .steps {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .step {
-      text-align: center;
-      flex: 1;
-      min-width: 200px;
-      max-width: 240px;
-    }
+    .steps { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; max-width: 1000px; margin: 0 auto; }
+    .step { text-align: center; flex: 1; min-width: 200px; max-width: 240px; }
     .step-number {
       width: 54px;
       height: 54px;
@@ -562,25 +437,11 @@
       margin: 0 auto 14px;
       box-shadow: 0 14px 30px rgba(79, 70, 229, 0.7);
     }
-    .step h3 {
-      font-size: 16px;
-      margin-bottom: 6px;
-    }
-    .step p {
-      color: var(--text-soft);
-      font-size: 13px;
-    }
+    .step h3 { font-size: 16px; margin-bottom: 6px; }
+    .step p { color: var(--text-soft); font-size: 13px; }
 
-    .use-cases {
-      padding: 70px 60px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .use-cases-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 22px;
-    }
+    .use-cases { padding: 70px 60px; max-width: 1200px; margin: 0 auto; }
+    .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 22px; }
     .use-case {
       background: var(--bg-panel);
       border: 1px solid var(--border-soft);
@@ -596,50 +457,25 @@
       background: var(--bg-panel-strong);
       box-shadow: var(--shadow-glow-purple);
     }
-    .use-case-icon {
-      font-size: 40px;
-      margin-bottom: 12px;
-      min-height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .use-case h4 {
-      font-size: 16px;
-      margin-bottom: 6px;
-    }
-    .use-case p {
-      color: var(--text-soft);
-      font-size: 13px;
-    }
+    .use-case-icon { font-size: 40px; margin-bottom: 12px; min-height: 40px; display: flex; align-items: center; justify-content: center; }
+    .use-case h4 { font-size: 16px; margin-bottom: 6px; }
+    .use-case p { color: var(--text-soft); font-size: 13px; }
 
-    .pricing {
-      padding: 70px 60px 80px;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-    .pricing-subtitle {
-      text-align: center;
-      color: var(--text-soft);
-      margin-bottom: 40px;
-      font-size: 14px;
-    }
-    .pricing-grid-5 {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 18px;
-    }
+    /* PRICING - 6 COLUMN GRID */
+    .pricing { padding: 70px 40px 80px; max-width: 1500px; margin: 0 auto; }
+    .pricing-subtitle { text-align: center; color: var(--text-soft); margin-bottom: 40px; font-size: 14px; }
+    .pricing-grid-6 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
     .pricing-card {
       background: var(--bg-panel);
       border: 1px solid var(--border-soft);
       border-radius: var(--radius-lg);
-      padding: 22px 18px;
+      padding: 20px 14px;
       text-align: center;
       box-shadow: 0 12px 32px rgba(15, 23, 42, 0.8);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 10px;
+      gap: 8px;
       transition: transform var(--transition-med), box-shadow var(--transition-med), border-color var(--transition-med), background var(--transition-med);
     }
     .pricing-card:hover {
@@ -652,9 +488,7 @@
       border-color: var(--accent);
       background: radial-gradient(circle at top, rgba(129, 140, 248, 0.25), rgba(15, 23, 42, 0.98));
       transform: translateY(-4px) scale(1.02);
-      box-shadow:
-        0 20px 60px rgba(15, 23, 42, 1),
-        0 0 40px rgba(129, 140, 248, 0.9);
+      box-shadow: 0 20px 60px rgba(15, 23, 42, 1), 0 0 40px rgba(129, 140, 248, 0.9);
       position: relative;
     }
     .pricing-card.featured::before {
@@ -664,9 +498,9 @@
       left: 50%;
       transform: translateX(-50%);
       background: linear-gradient(135deg, var(--primary), var(--secondary));
-      padding: 4px 14px;
+      padding: 4px 12px;
       border-radius: 999px;
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 700;
       letter-spacing: 0.12em;
     }
@@ -675,65 +509,42 @@
       background: radial-gradient(circle at top, rgba(255, 179, 71, 0.18), rgba(15, 23, 42, 0.98));
       box-shadow: var(--shadow-glow-gold);
     }
-    .pricing-card h3 {
-      font-size: 16px;
-      margin-bottom: 4px;
+    .pricing-card.api {
+      border-color: var(--cyan);
+      background: radial-gradient(circle at top, rgba(34, 211, 238, 0.18), rgba(15, 23, 42, 0.98));
+      box-shadow: var(--shadow-glow-cyan);
     }
-    .pricing-card .price {
-      font-size: 30px;
-      font-weight: 800;
-    }
-    .pricing-card .price span {
-      font-size: 13px;
-      color: var(--text-soft);
-      font-weight: 400;
-    }
-    .pricing-card .scans {
-      color: var(--text-soft);
-      margin: 4px 0 10px;
-      font-size: 12px;
-    }
+    .pricing-card h3 { font-size: 15px; margin-bottom: 4px; }
+    .pricing-card .price { font-size: 26px; font-weight: 800; }
+    .pricing-card .price span { font-size: 12px; color: var(--text-soft); font-weight: 400; }
+    .pricing-card .scans { color: var(--text-soft); margin: 4px 0 8px; font-size: 11px; }
     .pricing-card .power-badge {
       display: inline-block;
       background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
       color: #ffffff;
-      padding: 4px 10px;
+      padding: 3px 8px;
       border-radius: 999px;
-      font-size: 9px;
+      font-size: 8px;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       letter-spacing: 0.12em;
     }
-    .pricing-card ul {
-      list-style: none;
-      margin: 10px 0 14px;
-      text-align: left;
+    .pricing-card.api .power-badge {
+      background: linear-gradient(135deg, #0891b2, #22d3ee, #67e8f9);
     }
-    .pricing-card li {
-      padding: 4px 0;
-      color: #b0b0c0;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-    }
-    .pricing-card li::before {
-      content: "✓";
-      color: var(--secondary);
-      font-weight: bold;
-      font-size: 11px;
-    }
-    .pricing-card.enterprise li::before {
-      color: var(--gold);
-    }
+    .pricing-card ul { list-style: none; margin: 8px 0 12px; text-align: left; }
+    .pricing-card li { padding: 3px 0; color: #b0b0c0; display: flex; align-items: center; gap: 6px; font-size: 11px; }
+    .pricing-card li::before { content: "✓"; color: var(--secondary); font-weight: bold; font-size: 10px; }
+    .pricing-card.enterprise li::before { color: var(--gold); }
+    .pricing-card.api li::before { color: var(--cyan); }
     .btn-card {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: white;
-      padding: 10px 16px;
+      padding: 9px 14px;
       border-radius: 999px;
       text-decoration: none;
       font-weight: 600;
-      font-size: 13px;
+      font-size: 12px;
       display: inline-block;
       width: 100%;
       transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
@@ -744,43 +555,30 @@
       color: #111827;
       box-shadow: var(--shadow-glow-gold);
     }
-    .btn-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 40px rgba(79, 70, 229, 0.8);
+    .pricing-card.api .btn-card {
+      background: linear-gradient(135deg, #0891b2, #22d3ee);
+      color: #111827;
     }
-    .pricing-card.featured .btn-card:hover {
-      box-shadow: 0 18px 50px rgba(248, 181, 0, 0.95);
-    }
+    .btn-card:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(79, 70, 229, 0.8); }
+    .pricing-card.featured .btn-card:hover { box-shadow: 0 18px 50px rgba(248, 181, 0, 0.95); }
+    .pricing-card.api .btn-card:hover { box-shadow: 0 18px 50px rgba(34, 211, 238, 0.8); }
 
-    .api-pricing {
-      margin-top: 40px;
-      text-align: center;
-      background: radial-gradient(circle at top, rgba(79, 70, 229, 0.25), rgba(15, 23, 42, 0.98));
-      border: 1px solid rgba(129, 140, 248, 0.7);
-      border-radius: var(--radius-md);
-      padding: 22px;
-      max-width: 640px;
-      margin-left: auto;
-      margin-right: auto;
-      box-shadow: var(--shadow-soft);
+    /* API card specific styling */
+    .api-rates {
+      background: rgba(34, 211, 238, 0.1);
+      border-radius: 8px;
+      padding: 8px;
+      margin: 8px 0;
     }
-    .api-pricing h4 {
-      font-size: 18px;
-      margin-bottom: 8px;
-      color: #c7d2fe;
+    .api-rates .rate {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      padding: 3px 0;
     }
-    .api-pricing p {
-      color: #c0c0d0;
-      font-size: 15px;
-    }
-    .api-pricing strong {
-      color: var(--gold);
-      font-size: 18px;
-    }
-    .api-pricing .api-note {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 6px;
+    .api-rates .rate-price {
+      color: var(--cyan);
+      font-weight: 700;
     }
 
     footer {
@@ -790,44 +588,17 @@
       background: radial-gradient(circle at top, rgba(15, 23, 42, 0.95), rgba(3, 7, 18, 1));
       margin-top: 20px;
     }
-    .footer-logo {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 6px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .footer-logo .anchor {
-      color: var(--gold);
-      text-shadow: 0 0 15px rgba(255, 179, 71, 0.8);
-    }
+    .footer-logo { font-size: 20px; font-weight: 700; margin-bottom: 6px; display: inline-flex; align-items: center; gap: 8px; }
+    .footer-logo .anchor { color: var(--gold); text-shadow: 0 0 15px rgba(255, 179, 71, 0.8); }
     .footer-logo .text {
       background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .footer-tagline {
-      color: var(--accent);
-      font-size: 13px;
-      margin-bottom: 18px;
-    }
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
-    .footer-links a {
-      color: #9ca3af;
-      text-decoration: none;
-      font-size: 13px;
-      transition: color var(--transition-fast);
-    }
-    .footer-links a:hover {
-      color: #e5e7eb;
-    }
+    .footer-tagline { color: var(--accent); font-size: 13px; margin-bottom: 18px; }
+    .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 16px; flex-wrap: wrap; }
+    .footer-links a { color: #9ca3af; text-decoration: none; font-size: 13px; transition: color var(--transition-fast); }
+    .footer-links a:hover { color: #e5e7eb; }
     .blockchain-badge {
       display: inline-flex;
       align-items: center;
@@ -840,38 +611,23 @@
       color: #c4b5fd;
       margin-top: 10px;
     }
-    .blockchain-badge span {
-      font-size: 13px;
-    }
-    .copyright {
-      color: #6b7280;
-      font-size: 12px;
-      margin-top: 14px;
-    }
+    .blockchain-badge span { font-size: 13px; }
+    .copyright { color: #6b7280; font-size: 12px; margin-top: 14px; }
 
-    @media (max-width: 1200px) {
-      .pricing-grid-5 { grid-template-columns: repeat(3, 1fr); }
-    }
-    @media (max-width: 900px) {
-      .pricing-grid-5 { grid-template-columns: repeat(2, 1fr); }
-    }
+    /* RESPONSIVE - 6 COLUMNS */
+    @media (max-width: 1400px) { .pricing-grid-6 { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 900px) { .pricing-grid-6 { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 768px) {
       nav { padding: 12px 18px; }
       .nav-links { display: none; }
-      .hero {
-        padding: 120px 20px 60px;
-        grid-template-columns: minmax(0, 1fr);
-      }
-      .hero-visual {
-        order: -1;
-        margin-bottom: 18px;
-      }
+      .hero { padding: 120px 20px 60px; grid-template-columns: minmax(0, 1fr); }
+      .hero-visual { order: -1; margin-bottom: 18px; }
       h1 { font-size: 34px; }
       .hero-subtitle { font-size: 15px; }
       .stats { gap: 26px; padding: 30px 20px 40px; }
       .features, .how-it-works, .pricing, .use-cases { padding: 50px 20px 60px; }
       .value-banner { padding: 24px 18px; margin: 10px 18px 30px; }
-      .pricing-grid-5 { grid-template-columns: 1fr; }
+      .pricing-grid-6 { grid-template-columns: 1fr; }
       .pricing-card.featured { transform: translateY(0) scale(1); }
     }
   </style>
@@ -886,7 +642,7 @@
       <a href="#features">Features</a>
       <a href="#how-it-works">How It Works</a>
       <a href="#pricing">Pricing</a>
-      <a href="/cdn-cgi/l/email-protection#97f2f9e3f2e5e7e5fee4f2d7e3e5e2e3fffbf6eef2e5b9f6e7e7" class="btn-nav">Enterprise</a>
+      <a href="mailto:enterprise@truthlayer.app" class="btn-nav">Enterprise</a>
     </div>
   </nav>
 
@@ -895,7 +651,7 @@
     <div class="hero-content">
       <div class="badge"><span>⚓</span> Blockchain-Verified Detection</div>
       <h1>Is This Image Real?<br>Know in Seconds.</h1>
-      <p class="hero-subtitle">Detect AI-generated images and deepfakes with advanced multi-layer analysis and immutable blockchain proof. Truth for the world.</p>
+      <p class="hero-subtitle">Detect AI-generated images and deepfakes with 98.84% accuracy using advanced multi-layer analysis and immutable blockchain proof.</p>
       <div class="hero-buttons">
         <a href="#pricing" class="btn-primary">Get TruthLayer</a>
         <a href="#how-it-works" class="btn-secondary">See How It Works</a>
@@ -910,7 +666,7 @@
             <div>
               <div class="card-header">
                 <div class="card-title">TRUTHLAYER SCAN</div>
-                <div class="card-pill">MULTI-LAYER ANALYSIS</div>
+                <div class="card-pill">98.84% ACCURACY</div>
               </div>
               <div class="card-metric-row">
                 <div class="card-metric-label">Verdict</div>
@@ -925,7 +681,7 @@
                 <span class="card-status-dot"></span>
                 <span>Blockchain Verified</span>
               </div>
-              <div>⏱ &lt;3s • 19-Layer Scan</div>
+              <div>⏱ &lt;3s • Neural AI</div>
             </div>
           </div>
         </div>
@@ -939,8 +695,8 @@
   </div>
 
   <section class="stats">
-    <div class="stat"><div class="stat-number">10x</div><div class="stat-label">Detection Power</div></div>
-    <div class="stat"><div class="stat-number">95%+</div><div class="stat-label">Accuracy</div></div>
+    <div class="stat"><div class="stat-number">98.84%</div><div class="stat-label">Accuracy</div></div>
+    <div class="stat"><div class="stat-number">19</div><div class="stat-label">Detection Layers</div></div>
     <div class="stat"><div class="stat-number">&lt;3s</div><div class="stat-label">Analysis Time</div></div>
     <div class="stat"><div class="stat-number">∞</div><div class="stat-label">Blockchain Proof</div></div>
   </section>
@@ -959,7 +715,7 @@
       <div class="feature-card">
         <div class="feature-icon">🧠</div>
         <h3>Neural Detection</h3>
-        <p>Advanced deep learning models trained to identify the subtle fingerprints left by AI image generators like Midjourney, DALL-E, and Stable Diffusion.</p>
+        <p>Vision Transformer AI trained to identify the subtle fingerprints left by AI image generators like Midjourney, DALL-E, and Stable Diffusion.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">⛓️</div>
@@ -1066,7 +822,11 @@
   <section class="pricing" id="pricing">
     <h2>Simple, Transparent Pricing</h2>
     <p class="pricing-subtitle">No hidden fees. No sales calls required. Truth for everyone.</p>
-    <div class="pricing-grid-5">
+    
+    <!-- 6 COLUMN PRICING GRID -->
+    <div class="pricing-grid-6">
+      
+      <!-- 1. STARTER - FREE -->
       <div class="pricing-card">
         <h3>Starter</h3>
         <div class="price">Free</div>
@@ -1076,8 +836,10 @@
           <li>Basic neural analysis</li>
           <li>Truth Network lookup</li>
         </ul>
-        <a href="#" class="btn-card">Get Started</a>
+        <a href="#" class="btn-card" onclick="alert('Chrome Web Store link coming soon!'); return false;">Get Started</a>
       </div>
+      
+      <!-- 2. STANDARD - $4.99 -->
       <div class="pricing-card">
         <h3>Standard</h3>
         <div class="price">$4.99<span>/mo</span></div>
@@ -1089,8 +851,10 @@
           <li>Metadata + audio checks</li>
           <li>Priority processing</li>
         </ul>
-        <a href="#" class="btn-card">Subscribe</a>
+        <a href="#" class="btn-card" onclick="alert('Stripe payment link coming soon!'); return false;">Subscribe</a>
       </div>
+      
+      <!-- 3. PRO - $19.99 (FEATURED) -->
       <div class="pricing-card featured">
         <h3>Pro</h3>
         <div class="price">$19.99<span>/mo</span></div>
@@ -1103,8 +867,10 @@
           <li>API key (low volume)</li>
           <li>Early model access</li>
         </ul>
-        <a href="#" class="btn-card">Go Pro</a>
+        <a href="#" class="btn-card" onclick="alert('Stripe payment link coming soon!'); return false;">Go Pro</a>
       </div>
+      
+      <!-- 4. BUSINESS - $99 -->
       <div class="pricing-card">
         <h3>Business</h3>
         <div class="price">$99<span>/mo</span></div>
@@ -1115,28 +881,49 @@
           <li>Team accounts + roles</li>
           <li>Audit logs</li>
           <li>Priority support</li>
-          <li>Custom model tuning</li>
         </ul>
-        <a href="#" class="btn-card">Start Trial</a>
+        <a href="#" class="btn-card" onclick="alert('Stripe payment link coming soon!'); return false;">Start Trial</a>
       </div>
+      
+      <!-- 5. ENTERPRISE -->
       <div class="pricing-card enterprise">
         <h3>Enterprise</h3>
-        <div class="price" style="font-size: 24px;">$499–$4,999<span>/mo</span></div>
+        <div class="price" style="font-size: 22px;">Custom</div>
         <p class="scans">100K – 5M+ scans</p>
         <ul>
-          <li>On-premise / private cloud</li>
-          <li>SOC2 / HIPAA / GDPR</li>
+          <li>Volume pricing</li>
           <li>Dedicated support + SLA</li>
-          <li>Custom model training</li>
+          <li>Custom integrations</li>
           <li>White-label options</li>
         </ul>
         <a href="mailto:enterprise@truthlayer.app" class="btn-card">Contact Sales</a>
       </div>
-    </div>
-    <div class="api-pricing">
-      <h4>⚡ API Pay-As-You-Go</h4>
-      <p><strong>$0.002</strong> per image &nbsp;•&nbsp; <strong>$0.02</strong> per 10s video</p>
-      <p class="api-note">Stripe-style pricing. Predictable. Scalable.</p>
+      
+      <!-- 6. API PAY-AS-YOU-GO -->
+      <div class="pricing-card api">
+        <h3>API</h3>
+        <div class="price" style="font-size: 20px;">Pay-As-You-Go</div>
+        <p class="scans">No monthly commitment</p>
+        <div class="power-badge">DEVELOPERS</div>
+        <div class="api-rates">
+          <div class="rate">
+            <span>Image scan</span>
+            <span class="rate-price">$0.002</span>
+          </div>
+          <div class="rate">
+            <span>Video (10s)</span>
+            <span class="rate-price">$0.02</span>
+          </div>
+        </div>
+        <ul>
+          <li>REST API access</li>
+          <li>Webhook callbacks</li>
+          <li>Usage dashboard</li>
+          <li>Scale to millions</li>
+        </ul>
+        <a href="#" class="btn-card" onclick="alert('API docs coming soon!'); return false;">Get API Key</a>
+      </div>
+      
     </div>
   </section>
 
@@ -1149,8 +936,8 @@
     <div class="footer-links">
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
-      <a href="/cdn-cgi/l/email-protection#13767d67766163617a607653676166677b7f726a76613d726363">Enterprise</a>
-      <a href="/cdn-cgi/l/email-protection#9feceaefeff0edebdfebedeaebf7f3fee6faedb1feefef">Support</a>
+      <a href="mailto:enterprise@truthlayer.app">Enterprise</a>
+      <a href="mailto:support@truthlayer.app">Support</a>
       <a href="#">Privacy</a>
       <a href="#">Terms</a>
     </div>
