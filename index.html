@@ -477,6 +477,7 @@
       justify-content: space-between;
       gap: 8px;
       transition: transform var(--transition-med), box-shadow var(--transition-med), border-color var(--transition-med), background var(--transition-med);
+      position: relative;
     }
     .pricing-card:hover {
       transform: translateY(-4px);
@@ -489,7 +490,6 @@
       background: radial-gradient(circle at top, rgba(129, 140, 248, 0.25), rgba(15, 23, 42, 0.98));
       transform: translateY(-4px) scale(1.02);
       box-shadow: 0 20px 60px rgba(15, 23, 42, 1), 0 0 40px rgba(129, 140, 248, 0.9);
-      position: relative;
     }
     .pricing-card.featured::before {
       content: "BEST VALUE";
@@ -511,8 +511,12 @@
     }
     .pricing-card.api {
       border-color: var(--cyan);
-      background: radial-gradient(circle at top, rgba(34, 211, 238, 0.18), rgba(15, 23, 42, 0.98));
-      box-shadow: var(--shadow-glow-cyan);
+      background: radial-gradient(circle at top, rgba(34, 211, 238, 0.12), rgba(15, 23, 42, 0.98));
+      opacity: 0.85;
+    }
+    .pricing-card.api:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.8);
     }
     .pricing-card h3 { font-size: 15px; margin-bottom: 4px; }
     .pricing-card .price { font-size: 26px; font-weight: 800; }
@@ -555,30 +559,29 @@
       color: #111827;
       box-shadow: var(--shadow-glow-gold);
     }
-    .pricing-card.api .btn-card {
-      background: linear-gradient(135deg, #0891b2, #22d3ee);
-      color: #111827;
-    }
     .btn-card:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(79, 70, 229, 0.8); }
     .pricing-card.featured .btn-card:hover { box-shadow: 0 18px 50px rgba(248, 181, 0, 0.95); }
-    .pricing-card.api .btn-card:hover { box-shadow: 0 18px 50px rgba(34, 211, 238, 0.8); }
 
-    /* API card specific styling */
-    .api-rates {
-      background: rgba(34, 211, 238, 0.1);
-      border-radius: 8px;
-      padding: 8px;
-      margin: 8px 0;
-    }
-    .api-rates .rate {
-      display: flex;
-      justify-content: space-between;
+    /* Coming Soon Banner */
+    .coming-soon-banner {
+      background: linear-gradient(135deg, #0891b2, #22d3ee);
+      color: #111827;
+      padding: 6px 12px;
+      border-radius: 999px;
       font-size: 11px;
-      padding: 3px 0;
-    }
-    .api-rates .rate-price {
-      color: var(--cyan);
       font-weight: 700;
+      letter-spacing: 0.1em;
+      margin: 10px 0;
+      text-transform: uppercase;
+    }
+    .btn-card.disabled {
+      background: rgba(100, 100, 120, 0.5);
+      color: #888;
+      cursor: not-allowed;
+    }
+    .btn-card.disabled:hover {
+      transform: none;
+      box-shadow: none;
     }
 
     footer {
@@ -830,7 +833,7 @@
       <div class="pricing-card">
         <h3>Starter</h3>
         <div class="price">Free</div>
-        <p class="scans">10 scans / month</p>
+        <p class="scans">10 scans total</p>
         <ul>
           <li>Image + video detection</li>
           <li>Basic neural analysis</li>
@@ -859,12 +862,11 @@
         <h3>Pro</h3>
         <div class="price">$19.99<span>/mo</span></div>
         <p class="scans">1,000 scans / month</p>
-        <div class="power-badge">API ACCESS</div>
+        <div class="power-badge">FORENSIC REPORTS</div>
         <ul>
           <li>Everything in Standard</li>
           <li>Advanced forensic reports</li>
           <li>Frame-by-frame video</li>
-          <li>API key (low volume)</li>
           <li>Early model access</li>
         </ul>
         <a href="#" class="btn-card" onclick="alert('Stripe payment link coming soon!'); return false;">Go Pro</a>
@@ -899,29 +901,18 @@
         <a href="mailto:enterprise@truthlayer.app" class="btn-card">Contact Sales</a>
       </div>
       
-      <!-- 6. API PAY-AS-YOU-GO -->
+      <!-- 6. API - COMING SOON -->
       <div class="pricing-card api">
         <h3>API</h3>
-        <div class="price" style="font-size: 20px;">Pay-As-You-Go</div>
-        <p class="scans">No monthly commitment</p>
-        <div class="power-badge">DEVELOPERS</div>
-        <div class="api-rates">
-          <div class="rate">
-            <span>Image scan</span>
-            <span class="rate-price">$0.002</span>
-          </div>
-          <div class="rate">
-            <span>Video (10s)</span>
-            <span class="rate-price">$0.02</span>
-          </div>
-        </div>
+        <div class="coming-soon-banner">🚀 Coming Soon</div>
+        <p class="scans">For Developers</p>
         <ul>
           <li>REST API access</li>
+          <li>Pay-as-you-go pricing</li>
           <li>Webhook callbacks</li>
-          <li>Usage dashboard</li>
           <li>Scale to millions</li>
         </ul>
-        <a href="#" class="btn-card" onclick="alert('API docs coming soon!'); return false;">Get API Key</a>
+        <a href="mailto:api@truthlayer.app" class="btn-card disabled">Notify Me</a>
       </div>
       
     </div>
